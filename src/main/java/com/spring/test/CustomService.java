@@ -1,6 +1,7 @@
 package com.spring.test;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +12,14 @@ public class CustomService {
 	@Autowired
 	CustomMapper customMapper;
 
+/*	//전체 조회하기
+	public List<Custom> getCustomList(){
+		return customMapper.selectCustom();
+	}
+*/
 	// 리스트 조회하기
-	public Custom getBNList(String busi_num) {
-		return customMapper.selectBNCustom(busi_num);
+	public Custom getBNList(String busiNum) {
+		return customMapper.selectBNCustom(busiNum);
 	}
 	
 	public Custom getCustomOneList(String custom) {
@@ -22,16 +28,16 @@ public class CustomService {
 	
 	// 거래처 등록하기
 	public Custom insertCustom(Custom custom) {
-		custom.setRegi_info_date(LocalDateTime.now());;
-		custom.setModi_info_date(LocalDateTime.now());
+		custom.setRegiInfoDate(LocalDateTime.now());;
+		custom.setModiInfoDate(LocalDateTime.now());
 		int row = customMapper.insertCustom(custom);
 		
 		if (row == 1) {
-			return new Custom(custom.getBusi_num(), custom.getCustom(), custom.getsHort(), custom.getCeo(), custom.getCharge_person(), custom.getBusi_condition(), 
-					custom.getItem(), custom.getPost_num(), custom.getAddr1(), custom.getAddr2(), custom.getTel(), custom.getFax(), custom.getHomepage(), custom.getCo_yn(), 
-					custom.getForeign_yn(), custom.getTax_yn(), custom.getCountry_eng(), custom.getCountry_kor(), custom.getSpecial_relation(), custom.getTrade_stop(), 
-					custom.getContract_period_s(), custom.getContract_period_e(), custom.getRegi_info_man(), custom.getRegi_info_date(), custom.getModi_info_man(), 
-					custom.getModi_info_date());
+			return new Custom(custom.getBusiNum(), custom.getCustom(), custom.getsHort(), custom.getCeo(), custom.getChargePerson(), custom.getBusiCondition(), 
+					custom.getItem(), custom.getPostNum(), custom.getAddr1(), custom.getAddr2(), custom.getTel(), custom.getFax(), custom.getHomepage(), custom.getCoYn(), 
+					custom.getForeignYn(), custom.getTaxYn(), custom.getCountryEng(), custom.getCountryKor(), custom.getSpecialRelation(), custom.getTradeStop(), 
+					custom.getContractPeriodS(), custom.getContractPeriodE(), custom.getRegiInfoMan(), custom.getRegiInfoDate(), custom.getModiInfoMan(), 
+					custom.getModiInfoDate());
 		}else {
 			return null;
 		}
@@ -42,7 +48,7 @@ public class CustomService {
 		int row = customMapper.insertAccount(account);
 		
 		if (row == 1) {
-			return new Account(account.getBusi_num(), account.getFactory(), account.getTrade_bank(), account.getAccount_num());
+			return new Account(account.getBusiNum(), account.getFactory(), account.getTradeBank(), account.getAccountNum());
 		}else {
 			return null;
 		}
@@ -53,7 +59,7 @@ public class CustomService {
 		int row = customMapper.insertCountry(country);
 		
 		if(row == 1) {
-			return new Country(0, country.getName_eng(), country.getName_kor());
+			return new Country(0, country.getNameEng(), country.getNameKor());
 		}else {
 			return null;
 		}
@@ -61,16 +67,16 @@ public class CustomService {
 	
 	// 거래처 수정하기
 	public Custom updateCustom(Custom custom) {
-		custom.setRegi_info_date(LocalDateTime.now());;
-		custom.setModi_info_date(LocalDateTime.now());
+		custom.setRegiInfoDate(LocalDateTime.now());;
+		custom.setModiInfoDate(LocalDateTime.now());
 		int row = customMapper.updateCustom(custom);
 		
 		if (row == 1) {
-			return new Custom(custom.getBusi_num(), custom.getCustom(), custom.getsHort(), custom.getCeo(), custom.getCharge_person(), custom.getBusi_condition(), 
-					custom.getItem(), custom.getPost_num(), custom.getAddr1(), custom.getAddr2(), custom.getTel(), custom.getFax(), custom.getHomepage(), custom.getCo_yn(), 
-					custom.getForeign_yn(), custom.getTax_yn(), custom.getCountry_eng(), custom.getCountry_kor(), custom.getSpecial_relation(), custom.getTrade_stop(), 
-					custom.getContract_period_s(), custom.getContract_period_e(), custom.getRegi_info_man(), custom.getRegi_info_date(), custom.getModi_info_man(), 
-					custom.getModi_info_date());
+			return new Custom(custom.getBusiNum(), custom.getCustom(), custom.getsHort(), custom.getCeo(), custom.getChargePerson(), custom.getBusiCondition(), 
+					custom.getItem(), custom.getPostNum(), custom.getAddr1(), custom.getAddr2(), custom.getTel(), custom.getFax(), custom.getHomepage(), custom.getCoYn(), 
+					custom.getForeignYn(), custom.getTaxYn(), custom.getCountryEng(), custom.getCountryKor(), custom.getSpecialRelation(), custom.getTradeStop(), 
+					custom.getContractPeriodS(), custom.getContractPeriodE(), custom.getRegiInfoMan(), custom.getRegiInfoDate(), custom.getModiInfoMan(), 
+					custom.getModiInfoDate());
 		}else {
 			return null;
 		}
@@ -81,7 +87,7 @@ public class CustomService {
 		int row = customMapper.updateAccount(account);
 		
 		if (row == 1) {
-			return new Account(account.getBusi_num(), account.getFactory(), account.getTrade_bank(), account.getAccount_num());
+			return new Account(account.getBusiNum(), account.getFactory(), account.getTradeBank(), account.getAccountNum());
 		}else {
 			return null;
 		}
@@ -92,12 +98,20 @@ public class CustomService {
 		int row = customMapper.updateCountry(country);
 		
 		if(row == 1) {
-			return new Country(0, country.getName_eng(), country.getName_kor());
+			return new Country(0, country.getNameEng(), country.getNameKor());
 		}else {
 			return null;
 		}
 	}
 	
 	// 거래처 정보 삭제하기
-	
+	public Custom deleteCustom(Custom custom) {
+		int row = customMapper.deleteCustom(custom);
+		
+		if(row == 1) {
+			return null;
+		}else {
+			return null;
+		}
+	}
 }

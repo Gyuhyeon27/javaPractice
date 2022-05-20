@@ -1,27 +1,28 @@
 package com.spring.test;
 
 public class Account {
-	private String busi_num;
+	private String busiNum;
 	private String factory;
-	private String trade_bank;
-	private String account_num;
-	
-	public Account() {}
+	private String tradeBank;
+	private String accountNum;
 
-	public Account(String busi_num, String factory, String trade_bank, String account_num) {
+	public Account() {
+	}
+
+	public Account(String busiNum, String factory, String tradeBank, String accountNum) {
 		super();
-		this.busi_num = busi_num;
+		this.busiNum = busiNum;
 		this.factory = factory;
-		this.trade_bank = trade_bank;
-		this.account_num = account_num;
+		this.tradeBank = tradeBank;
+		this.accountNum = accountNum;
 	}
 
-	public String getBusi_num() {
-		return busi_num;
+	public String getBusiNum() {
+		return busiNum;
 	}
 
-	public void setBusi_num(String busi_num) {
-		this.busi_num = busi_num;
+	public void setBusiNum(String busiNum) {
+		this.busiNum = busiNum;
 	}
 
 	public String getFactory() {
@@ -32,26 +33,26 @@ public class Account {
 		this.factory = factory;
 	}
 
-	public String getTrade_bank() {
-		return trade_bank;
+	public String getTradeBank() {
+		return tradeBank;
 	}
 
-	public void setTrade_bank(String trade_bank) {
-		this.trade_bank = trade_bank;
+	public void setTradeBank(String tradeBank) {
+		this.tradeBank = tradeBank;
 	}
 
-	public String getAccount_num() {
-		return account_num;
+	public String getAccountNum() {
+		return accountNum;
 	}
 
-	public void setAccount_num(String account_num) {
-		this.account_num = account_num;
+	public void setAccountNum(String accountNum) {
+		this.accountNum = accountNum;
 	}
 
 	@Override
 	public String toString() {
-		return "Account [busi_num=" + busi_num + ", factory=" + factory + ", trade_bank=" + trade_bank
-				+ ", account_num=" + account_num + "]";
+		return "Account [busiNum=" + busiNum + ", factory=" + factory + ", tradeBank=" + tradeBank + ", accountNum="
+				+ accountNum + "]";
 	}
-	
+
 }
