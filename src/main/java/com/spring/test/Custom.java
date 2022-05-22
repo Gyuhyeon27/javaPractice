@@ -31,6 +31,10 @@ public class Custom {
 	private String modiInfoMan;
 	private LocalDateTime modiInfoDate;
 
+	private String factory;
+	private String tradeBank;
+	private String accountNum;
+
 	public Custom() {
 	}
 
@@ -38,7 +42,8 @@ public class Custom {
 			String item, String postNum, String addr1, String addr2, String tel, String fax, String homepage,
 			String coYn, String foreignYn, String taxYn, String countryEng, String countryKor, String specialRelation,
 			String tradeStop, LocalDate contractPeriodS, LocalDate contractPeriodE, String regiInfoMan,
-			LocalDateTime regiInfoDate, String modiInfoMan, LocalDateTime modiInfoDate) {
+			LocalDateTime regiInfoDate, String modiInfoMan, LocalDateTime modiInfoDate, String factory,
+			String tradeBank, String accountNum) {
 		super();
 		this.busiNum = busiNum;
 		this.custom = custom;
@@ -66,6 +71,9 @@ public class Custom {
 		this.regiInfoDate = regiInfoDate;
 		this.modiInfoMan = modiInfoMan;
 		this.modiInfoDate = modiInfoDate;
+		this.factory = factory;
+		this.tradeBank = tradeBank;
+		this.accountNum = accountNum;
 	}
 
 	public String getBusiNum() {
@@ -276,6 +284,30 @@ public class Custom {
 		this.modiInfoDate = modiInfoDate;
 	}
 
+	public String getFactory() {
+		return factory;
+	}
+
+	public void setFactory(String factory) {
+		this.factory = factory;
+	}
+
+	public String getTradeBank() {
+		return tradeBank;
+	}
+
+	public void setTradeBank(String tradeBank) {
+		this.tradeBank = tradeBank;
+	}
+
+	public String getAccountNum() {
+		return accountNum;
+	}
+
+	public void setAccountNum(String accountNum) {
+		this.accountNum = accountNum;
+	}
+
 	@Override
 	public String toString() {
 		return "Custom [busiNum=" + busiNum + ", custom=" + custom + ", sHort=" + sHort + ", ceo=" + ceo
@@ -285,7 +317,8 @@ public class Custom {
 				+ ", countryEng=" + countryEng + ", countryKor=" + countryKor + ", specialRelation=" + specialRelation
 				+ ", tradeStop=" + tradeStop + ", contractPeriodS=" + contractPeriodS + ", contractPeriodE="
 				+ contractPeriodE + ", regiInfoMan=" + regiInfoMan + ", regiInfoDate=" + regiInfoDate + ", modiInfoMan="
-				+ modiInfoMan + ", modiInfoDate=" + modiInfoDate + "]";
+				+ modiInfoMan + ", modiInfoDate=" + modiInfoDate + ", factory=" + factory + ", tradeBank=" + tradeBank
+				+ ", accountNum=" + accountNum + "]";
 	}
 
 }

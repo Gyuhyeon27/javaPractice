@@ -3,6 +3,18 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<style>
+  table {
+    border: 1px solid #444444;
+    border-collapse: collapse;
+    text-align: center;
+    width: 10%;
+    margin-top: 10px;
+  }
+  th, td {
+    border: 1px solid #444444;
+  }
+</style>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -10,8 +22,9 @@
 <body>
 	<div class="search_custom">
 		<form action="/Custom/customList">
-			<label>사업자번호</label>	<input type="text" name="busi_num" placeholder="사업자 번호를 입력하세요."><br>
-			<label>거래처명&emsp;</label>	<input type="text" name="custom" placeholder="거래처명을 입력하세요."><br>
+			<label>사업자번호</label> <input type="text" name="busi_num"
+				placeholder="사업자 번호를 입력하세요."><br> <label>거래처명&emsp;</label>
+			<input type="text" name="custom" placeholder="거래처명을 입력하세요."><br>
 			<input type="submit" value="조회">
 		</form>
 	</div>
@@ -22,14 +35,17 @@
 				<th>거래처명</th>
 			</tr>
 			<tr>
-				<td>${custom.busiNum }</td>
-				<td>${custom.custom }</td>
+				<td id="bn" ondblclick = "CustomInfo()">${custom.busiNum }</td>
+				<td id="custom" ondblclick = "CustomInfo()">${custom.custom }</td>
 			</tr>
 		</table>
 	</div>
-	<div class="custom_info">
-		<form action="/Custom/customList" method="post">
-			<input type="submit" value="초기화"><input type="submit" value="등록"><input type="submit" value="수정"><input type="submit" value="삭제">
+		<div class="custom_info" id="custom_info" style="display: none;">
+		<form method="post" name="form">
+			<input type="submit" value="초기화" formaction="/Custom/customList">
+			<button type="button" onclick="location.href='/Custom/customInput'">등록</button>
+			<button type="button" onclick="location.href='/Custom/customUpdate'">수정</button>
+			<input type="submit" value="삭제" formaction="/Custom/customDelete"><br>
 			<label>사업자번호</label> <input type="text" name="busi_num" value="${custom.busiNum }">&emsp;&emsp;&emsp;&emsp;<label>약&emsp;&emsp;&emsp;칭</label>  <input type="text" name="short" value="${custom.sHort }"><br>
 			<label>거 래 처 명</label>	<input type="text" name="custom" value="${custom.custom }"><br>
 			<label>대&emsp;표&emsp;자</label> <input type="text" name="ceo" value="${custom.ceo }">&emsp;&emsp;&emsp;&emsp;<label>담&emsp;당&emsp;자</label> <input type="text" name="ceo" value="${custom.chargePerson }"><br>
@@ -54,10 +70,30 @@
 						<th>계좌번호</th>
 					</tr>
 					<tr>
+					<td>
+							<input type="text" name="factory" value="${custom.factory }">
+						</td>
+						<td><input type="text" name="tradeBank" value="${custom.tradeBank }"></td>
+						<td><input type="text" name="accountNum" value="${custom.accountNum }"></td>
 					</tr>
 				</table>
 			</div>
 		</form>
 	</div>
+	<script>
+	function CustomInput() {
+		location.href="/Custom/customInput";
+	}
+	
+	function CustomInfo() {
+		var con = document.getElementById("custom_info");
+		
+		if(con.style.display=='none'){
+			con.style.display = 'block';
+		}else{
+			con.style.display = 'none';
+		}
+	}
+</script>
 </body>
 </html>

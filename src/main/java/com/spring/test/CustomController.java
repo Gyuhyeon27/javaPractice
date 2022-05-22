@@ -31,23 +31,54 @@ public class CustomController {
 //			model.addAttribute("custom", customAll);
 		}
 
-		return "selectCustom";
+		return "customList";
 	}
 
 	// 등록하기
-	@GetMapping("/customList")
+	@GetMapping("/customInput")
 	public String showInsertCustom() {
-		return "selectCustom";
+		return "customInput";
 	}
 	
-	@PostMapping("/customList")
-	public String insertCustom(Model model, Custom custom) {
+	@PostMapping("/customInput")
+	public String insertCustom(Model model, Custom custom, Account account) {
 
 		Custom customInsert = customService.insertCustom(custom);
+		Account accountInsert = customService.insertAccount(account);
 
+		System.out.println(customInsert);
+		System.out.println(accountInsert);
+		
 		model.addAttribute("custom", customInsert);
+		model.addAttribute("account", accountInsert);
 
-		return "selectCustom";
+		return "customInput";
 	}
 
+	@GetMapping("/customUpdate")
+	public String showUpdateCustom(Model model, @Param("busi_num") String busiNum, @Param("custom") String custom) {
+		Custom customBN = customService.getBNList(busiNum);
+		Custom customOne = customService.getCustomOneList(custom);
+		
+		if (customBN != null && customOne == null) {
+			model.addAttribute("custom", customBN);
+		} else if (customBN == null && customOne != null) {
+			model.addAttribute("custom", customOne);
+		}
+
+		return "customUpdate";
+	}
+	
+	@PostMapping("/customUpdate")
+	public String updateCustom(Model model, Custom custom, Account account) {
+
+		Custom customUpdate = customService.updateCustom(custom);
+		Account accountUpdate = customService.insertAccount(account);
+
+		System.out.println(customUpdate);
+		model.addAttribute("custom", customUpdate);
+		model.addAttribute("account", accountUpdate );
+
+		return "customUpdate";
+	}
 }

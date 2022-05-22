@@ -37,7 +37,7 @@ public class CustomService {
 					custom.getItem(), custom.getPostNum(), custom.getAddr1(), custom.getAddr2(), custom.getTel(), custom.getFax(), custom.getHomepage(), custom.getCoYn(), 
 					custom.getForeignYn(), custom.getTaxYn(), custom.getCountryEng(), custom.getCountryKor(), custom.getSpecialRelation(), custom.getTradeStop(), 
 					custom.getContractPeriodS(), custom.getContractPeriodE(), custom.getRegiInfoMan(), custom.getRegiInfoDate(), custom.getModiInfoMan(), 
-					custom.getModiInfoDate());
+					custom.getModiInfoDate(),custom.getFactory(), custom.getTradeBank(), custom.getAccountNum());
 		}else {
 			return null;
 		}
@@ -76,7 +76,7 @@ public class CustomService {
 					custom.getItem(), custom.getPostNum(), custom.getAddr1(), custom.getAddr2(), custom.getTel(), custom.getFax(), custom.getHomepage(), custom.getCoYn(), 
 					custom.getForeignYn(), custom.getTaxYn(), custom.getCountryEng(), custom.getCountryKor(), custom.getSpecialRelation(), custom.getTradeStop(), 
 					custom.getContractPeriodS(), custom.getContractPeriodE(), custom.getRegiInfoMan(), custom.getRegiInfoDate(), custom.getModiInfoMan(), 
-					custom.getModiInfoDate());
+					custom.getModiInfoDate(), custom.getFactory(), custom.getTradeBank(), custom.getAccountNum());
 		}else {
 			return null;
 		}
