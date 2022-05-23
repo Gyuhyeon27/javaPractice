@@ -28,7 +28,7 @@ public class CustomService {
 	
 	// 거래처 등록하기
 	public Custom insertCustom(Custom custom) {
-		custom.setRegiInfoDate(LocalDateTime.now());;
+		custom.setRegiInfoDate(LocalDateTime.now());
 		custom.setModiInfoDate(LocalDateTime.now());
 		int row = customMapper.insertCustom(custom);
 		
@@ -67,7 +67,7 @@ public class CustomService {
 	
 	// 거래처 수정하기
 	public Custom updateCustom(Custom custom) {
-		custom.setRegiInfoDate(LocalDateTime.now());;
+		custom.setRegiInfoDate(LocalDateTime.now());
 		custom.setModiInfoDate(LocalDateTime.now());
 		int row = customMapper.updateCustom(custom);
 		

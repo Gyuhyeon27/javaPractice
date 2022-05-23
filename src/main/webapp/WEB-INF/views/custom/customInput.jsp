@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <style>
@@ -26,11 +27,11 @@
 <body>
 	<div class="custom_info">
 		<form method="post" name="form">
-			<input type="submit" value="초기화" formaction="/Custom/customList">
+			<button type="button" id="reset" onclick="custom_reset()">초기화</button>
 			<input type="submit" value="등록" formaction="/Custom/customInput">
 			<button type="button" onclick="location.href='/Custom/customUpdate'">수정</button>
 			<input type="submit" value="삭제" formaction="/Custom/customDelete"><br>
-			<label>사업자번호</label> <input type="text" name="busiNum" >&emsp;&emsp;&emsp;&emsp;<label>약&emsp;&emsp;&emsp;칭</label>  <input type="text" name="sHort"><br>
+			<label>사업자번호</label> <input type="text" name="busiNum">&emsp;&emsp;&emsp;&emsp;<label>약&emsp;&emsp;&emsp;칭</label>  <input type="text" name="sHort"><br>
 			<label>거 래 처 명</label>	<input type="text" name="custom"><br>
 			<label>대&emsp;표&emsp;자</label> <input type="text" name="ceo">&emsp;&emsp;&emsp;&emsp;<label>담&emsp;당&emsp;자</label> <input type="text" name="chargePerson"><br>
 			<label>업&emsp;&emsp;&emsp;태</label> <input type="text" name="busiCondition">&emsp;&emsp;&emsp;&emsp;<label>종&emsp;&emsp;&emsp;목</label> <input type="text" name="item"><br>
@@ -44,8 +45,8 @@
 			<label>국&emsp;&emsp;가</label> <input type="text" name="countryEng"><input type="text" name="countryKor" ><button>검색</button><br>
 			<label>특수관계자<input type="checkbox" name="specialRelation"></label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>거 래 중 지<input type="checkbox" name="tradeStop"></label><br>
 			<label>계 약 기 간</label><input type="date" name="contractPeriodS">&emsp;&emsp;&emsp;<input type="date" name="contractPeriodE"><br>
-			<label>등 록 정 보</label><input type="text" name="regiInfoMan">&emsp;<input type="date" name="regiInfoDate">&emsp;
-			<label>변 경 정 보</label><input type="text" name="modiInfoMan">&emsp;<input type="date" name="modiInfoDate"><br>
+			<label>등 록 정 보</label><input type="text" name="regiInfoMan">&emsp;<input type="text" name="regiInfoDate" readonly="readonly">&emsp;
+			<label>변 경 정 보</label><input type="text" name="modiInfoMan">&emsp;<input type="text" name="modiInfoDate" readonly="readonly"><br>
 			<div class="account_info">
 				<table>
 					<tr>
@@ -53,7 +54,7 @@
 						<th>은 행</th>
 						<th>계좌번호</th>
 					</tr>
-					<input type="hidden" name="busiNum" value="${custom.busiNum }">
+					<input type="hidden" name="busiNum">
 					<tr>
 						<td>
 							<input type="text" name="factory" >
@@ -66,16 +67,9 @@
 		</form>
 	</div>
 <script>
-    //load함수를 이용하여 core스크립트의 로딩이 완료된 후, 우편번호 서비스를 실행합니다.
-    daum.postcode.load(function(){
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-                // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-            }
-        }).open();
-    });
-    
+	function custom_reset() {
+		document.getElementById("reset").value='';
+	}
     function execPostCode(){
     	daum.postcode.load(function(){
             new daum.Postcode({

@@ -30,7 +30,7 @@ public class CustomController {
 //		}else if(customBN == null && customOne == null){
 //			model.addAttribute("custom", customAll);
 		}
-
+		
 		return "customList";
 	}
 
@@ -55,30 +55,17 @@ public class CustomController {
 		return "customInput";
 	}
 
-	@GetMapping("/customUpdate")
-	public String showUpdateCustom(Model model, @Param("busi_num") String busiNum, @Param("custom") String custom) {
-		Custom customBN = customService.getBNList(busiNum);
-		Custom customOne = customService.getCustomOneList(custom);
-		
-		if (customBN != null && customOne == null) {
-			model.addAttribute("custom", customBN);
-		} else if (customBN == null && customOne != null) {
-			model.addAttribute("custom", customOne);
-		}
-
-		return "customUpdate";
-	}
-	
-	@PostMapping("/customUpdate")
+	//수정하기
+	@PostMapping("/customList")
 	public String updateCustom(Model model, Custom custom, Account account) {
 
 		Custom customUpdate = customService.updateCustom(custom);
-		Account accountUpdate = customService.insertAccount(account);
+		Account accountUpdate = customService.updateAccount(account);
 
 		System.out.println(customUpdate);
 		model.addAttribute("custom", customUpdate);
 		model.addAttribute("account", accountUpdate );
 
-		return "customUpdate";
+		return "customList";
 	}
 }

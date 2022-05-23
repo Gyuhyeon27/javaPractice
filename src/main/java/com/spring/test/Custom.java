@@ -3,6 +3,8 @@ package com.spring.test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Custom {
 	private String busiNum;
 	private String custom;
@@ -24,7 +26,9 @@ public class Custom {
 	private String countryKor;
 	private String specialRelation;
 	private String tradeStop;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate contractPeriodS;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate contractPeriodE;
 	private String regiInfoMan;
 	private LocalDateTime regiInfoDate;
