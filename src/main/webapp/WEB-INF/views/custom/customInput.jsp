@@ -27,7 +27,7 @@
 <body>
 	<div class="custom_info">
 		<form method="post" name="form">
-			<button type="button" id="reset" onclick="custom_reset()">초기화</button>
+			<button type="reset">초기화</button>
 			<input type="submit" value="등록" formaction="/Custom/customInput">
 			<button type="button" onclick="location.href='/Custom/customUpdate'">수정</button>
 			<input type="submit" value="삭제" formaction="/Custom/customDelete"><br>
@@ -54,7 +54,6 @@
 						<th>은 행</th>
 						<th>계좌번호</th>
 					</tr>
-					<input type="hidden" name="busiNum">
 					<tr>
 						<td>
 							<input type="text" name="factory" >
@@ -67,9 +66,6 @@
 		</form>
 	</div>
 <script>
-	function custom_reset() {
-		document.getElementById("reset").value='';
-	}
     function execPostCode(){
     	daum.postcode.load(function(){
             new daum.Postcode({

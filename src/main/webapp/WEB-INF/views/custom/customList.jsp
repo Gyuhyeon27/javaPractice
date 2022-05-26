@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -69,7 +69,7 @@
 	<div class="left_box">
 		<div class="search_custom">
 			<form class="search_form" action="/Custom/customList">
-				<label>사업자번호</label> <input type="text" name="busi_num"
+				<label>사업자번호</label> <input type="text" name="busiNum"
 					placeholder="사업자 번호를 입력하세요."><br> <label>거래처명&emsp;</label>
 				<input type="text" name="custom" placeholder="거래처명을 입력하세요."><br>
 				<input type="submit" value="조회" class="search_input">
@@ -81,10 +81,12 @@
 					<th>사업자번호</th>
 					<th>거래처명</th>
 				</tr>
+				<c:forEach var="custom" items="${custom }">
 				<tr>
 					<td id="bn" ondblclick = "CustomInfo()">${custom.busiNum }</td>
 					<td id="custom" ondblclick = "CustomInfo()">${custom.custom }</td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</div>
@@ -92,30 +94,26 @@
 		<div class="custom_info" id="custom_info">
 			<form method="post" name="form">
 				<div class="input_box">
-					<button type="button" id="reset" onclick="custom_reset()">초기화</button>
+					<button type="reset">초기화</button>
 					<button type="button" onclick="location.href='/Custom/customInput'">등록</button>
-					<input type="submit" value="수정" id="update" onclick="customUpdate()" formaction="/Custom/customList">
-					<input type="submit" value="삭제" formaction="/Custom/customDelete"></div><br>
-					<label>사업자번호</label> <input type="text" name="busiNum" value="${custom.busiNum }">&emsp;&emsp;&emsp;&emsp;<label>약&emsp;&emsp;&emsp;칭</label>  <input type="text" name="sHort" value="${custom.sHort }"><br>
-					<label>거 래 처 명</label>	<input type="text" name="custom" value="${custom.custom }"><br>
-					<label>대&emsp;표&emsp;자</label> <input type="text" name="ceo" value="${custom.ceo }">&emsp;&emsp;&emsp;&emsp;<label>담&emsp;당&emsp;자</label> <input type="text" name="chargePerson" value="${custom.chargePerson }"><br>
-					<label>업&emsp;&emsp;&emsp;태</label> <input type="text" name="busiCondition" value="${custom.busiCondition }">&emsp;&emsp;&emsp;&emsp;<label>종&emsp;&emsp;&emsp;목</label> <input type="text" name="item" value="${custom.item }"><br>
-					<label>우 편 번 호</label> <input type="text" name="postNum" id="postNum" value="${custom.postNum }"> <button type="button" onclick="execPostCode()">검색</button>&emsp;<label style="margin-right: 13px;">주&emsp;소&emsp;1</label><input type="text" name="addr1" id="addr1" value="${custom.addr1 }"><br>
-					<label style="margin-right: 14px;">주&emsp;소&emsp;2</label><input type="text" name="addr2" id="addr2" value="${custom.addr2 }"><br>
-					<label>전 화 번 호</label> <input type="text" name="tel" value="${custom.tel }">&emsp;&emsp;&emsp;&emsp;<label>팩 스 번 호</label> <input type="text" name="fax" value="${custom.fax }"><br>
-					<label>홈 페 이 지</label>	<input type="text" name="homepage" value="${custom.homepage }"><br>
-					<label>법 인 여 부</label> <label><input type="radio" name="coYn" value="${custom.coYn }">법인</label>&emsp;<label><input type="radio" name="coYn" value="${custom.coYn }">개인</label>
-					<label>해 외 여 부</label> <label><input type="radio" name="foreignYn" value="${custom.foreignYn }">국내</label>&emsp;<label><input type="radio" name="foreignYn" value="${custom.foreignYn }">해외</label><br>
+					<button type="button" onclick="location.href='/Custom/customUpdate?busiNum='">수정</button>
+					<button type="button" onclick="location.href='/Custom/customDelete?busiNum='">삭제</button></div><br>
+					<label>사업자번호</label> <input type="text" name="busiNum" >&emsp;&emsp;&emsp;&emsp;<label>약&emsp;&emsp;&emsp;칭</label>  <input type="text" name="sHort"><br>
+					<label>거 래 처 명</label>	<input type="text" name="custom" ><br>
+					<label>대&emsp;표&emsp;자</label> <input type="text" name="ceo">&emsp;&emsp;&emsp;&emsp;<label>담&emsp;당&emsp;자</label> <input type="text" name="chargePerson"><br>
+					<label>업&emsp;&emsp;&emsp;태</label> <input type="text" name="busiCondition">&emsp;&emsp;&emsp;&emsp;<label>종&emsp;&emsp;&emsp;목</label> <input type="text" name="item"><br>
+					<label>우 편 번 호</label> <input type="text" name="postNum" id="postNum"> <button type="button" onclick="execPostCode()">검색</button>&emsp;<label style="margin-right: 13px;">주&emsp;소&emsp;1</label><input type="text" name="addr1" id="addr1"><br>
+					<label style="margin-right: 14px;">주&emsp;소&emsp;2</label><input type="text" name="addr2" id="addr2"><br>
+					<label>전 화 번 호</label> <input type="text" name="tel">&emsp;&emsp;&emsp;&emsp;<label>팩 스 번 호</label> <input type="text" name="fax"><br>
+					<label>홈 페 이 지</label>	<input type="text" name="homepage"><br>
+					<label>법 인 여 부</label> <label><input type="radio" name="coYn">법인</label>&emsp;<label><input type="radio" name="coYn">개인</label>
+					<label>해 외 여 부</label> <label><input type="radio" name="foreignYn">국내</label>&emsp;<label><input type="radio" name="foreignYn">해외</label><br>
 					<label>과 세 구 분</label> <select name="tax_yn"><option value="과세">과세</option><option value="면세">면세</option></select>&emsp;&emsp;&emsp;&emsp;
-					<label>국&emsp;&emsp;가</label> <input type="text" name="countryEng" value="${custom.countryEng }"><input type="text" name="countryKor" value="${custom.countryKor }"><button type="button">검색</button><br>
-					<label>특수관계자<input type="checkbox" name="specialRelation" value="${custom.specialRelation }"></label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>거 래 중 지<input type="checkbox" name="tradeStop" value="${custom.tradeStop }"></label><br>
-					<label>계 약 기 간</label><input type="date" name="contractPeriodS" value="${custom.contractPeriodS }">&emsp;&emsp;&emsp;<input type="date" name="contractPeriodE" value="${custom.contractPeriodE }"><br>
-					<f:parseDate value="${custom.regiInfoDate }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="regiInfoDate"/>
-					<f:formatDate value="${regiInfoDate }" pattern="yyyy-MM-dd HH:mm:ss" var="rd"/>
-					<label>등 록 정 보</label><input type="text" name="regiInfoMan" value="${custom.regiInfoMan }">&emsp;<input type="text" name="regiInfoDate" value="${rd }" readonly="readonly">&emsp;
-					<f:parseDate value="${custom.modiInfoDate }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="modiInfoDate"/>
-					<f:formatDate value="${modiInfoDate }" pattern="yyyy-MM-dd HH:mm:ss" var="md"/>
-					<label>변 경 정 보</label><input type="text" name="modiInfoMan" value="${custom.modiInfoMan }">&emsp;<input type="text" name="modiInfoDate" value="${md }" readonly="readonly"><br>
+					<label>국&emsp;&emsp;가</label> <input type="text" name="countryEng"><input type="text" name="countryKor"><button type="button">검색</button><br>
+					<label>특수관계자<input type="checkbox" name="specialRelation"></label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>거 래 중 지<input type="checkbox" name="tradeStop"></label><br>
+					<label>계 약 기 간</label><input type="date" name="contractPeriodS">&emsp;&emsp;&emsp;<input type="date" name="contractPeriodE" ><br>
+					<label>등 록 정 보</label><input type="text" name="regiInfoMan">&emsp;<input type="text" name="regiInfoDate" readonly="readonly">&emsp;
+					<label>변 경 정 보</label><input type="text" name="modiInfoMan">&emsp;<input type="text" name="modiInfoDate" readonly="readonly"><br>
 				<div class="account_info">
 					<table>
 						<tr>
@@ -125,11 +123,10 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="hidden" name="busiNum" value="${custom.busiNum }">
-								<input type="text" name="factory" value="${custom.factory }">
+								<input type="text" name="factory">
 							</td>
-							<td><input type="text" name="tradeBank" value="${custom.tradeBank }"></td>
-							<td><input type="text" name="accountNum" value="${custom.accountNum }"></td>
+							<td><input type="text" name="tradeBank"></td>
+							<td><input type="text" name="accountNum"></td>
 						</tr>
 					</table>
 				</div>
@@ -137,14 +134,7 @@
 		</div>
 	</div>
 	<script>
-	function custom_reset() {
-		document.getElementById("reset").value='';
-	}	
-	
-	function customUpdate() {
-		alert("수정이 완료되었습니다.");
-	}
-	
+
     function execPostCode(){
     	daum.postcode.load(function(){
             new daum.Postcode({

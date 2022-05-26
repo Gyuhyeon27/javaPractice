@@ -5,16 +5,20 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface CustomMapper {
 
-/*	// 거래처 전체 조회
-	@Select("select * from custom")
-	public List<Custom> selectCustom();
-*/	
+	// 거래처 전체 조회
+	@Select("select * from custom cu join account a on cu.busi_num = a.busi_num")
+	public List<Custom> AllCustomList();
+	
+	@Select("select * from custom cu join account a on cu.busi_num = a.busi_num where cu.busi_num like = '%#{busiNum}%' or custom like = '%#{custom}%'")
+	public List<Custom> customSearch(@Param("busi_num") String busiNum, @Param("custom") String custom);
+
 	// busi_num 이용해 조회
 	@Select("select * from custom cu join account a on cu.busi_num = a.busi_num  where cu.busi_num = #{busiNum}")
 	public Custom selectBNCustom(String busiNum);
@@ -45,7 +49,7 @@ public interface CustomMapper {
 			+ "busi_condition = #{busiCondition}, item = #{item}, post_num = #{postNum}, addr1 = #{addr1}, addr2 = #{addr2}, tel = #{tel}, fax = #{fax}, "
 			+ "homepage = #{homepage}, co_yn = #{coYn}, foreign_yn = #{foreignYn}, tax_yn = #{taxYn}, country_eng = #{countryEng}, country_kor = #{countryKor}, "
 			+ "special_relation = #{specialRelation}, trade_stop = #{tradeStop}, contract_period_s = #{contractPeriodS}, contract_period_e = #{contractPeriodE}, "
-			+ "regi_info_man = #{regiInfoMan}, regi_info_date = #{regiInfoDate}, modi_info_man = #{modiInfoMan}, modi_info_date = #{modiInfoDate} "
+			+ "regi_info_man = #{regiInfoMan}, modi_info_man = #{modiInfoMan}, modi_info_date = #{modiInfoDate} "
 			+ "where busi_num = #{busiNum}")
 	public int updateCustom(Custom custom);
 
@@ -59,5 +63,5 @@ public interface CustomMapper {
 	
 	// 거래처 정보 삭제하기
 	@Delete("delete from custom where busi_num = #{busiNum}")
-	public int deleteCustom(Custom custom);
+	public int deleteCustom(String busiNum);
 }
