@@ -19,13 +19,13 @@ public class CustomController {
 
 	@GetMapping("/customList")
 	public String AllCustomList(Model model) {
-		List<Custom> customList = customService.AllCustomList();
-		
+		List<CustomAcc> customList = customService.AllCustomList();
+
 		model.addAttribute("custom", customList);
-		
+
 		return "customList";
 	}
-	
+
 	/*
 	 * @GetMapping("/customSearch") public String customSearch(Model
 	 * model, @Param("busi_num") String busiNum, @Param("custom") String custom) {
@@ -38,24 +38,28 @@ public class CustomController {
 
 	// 수정하기
 	@GetMapping("/customUpdate")
-	public String customUpdate(Model model, String busiNum, String custom) {
-		Custom customBN = customService.getBNList(busiNum);
+	public String customUpdate(Model model, String busiNum) {
+		CustomAcc customBN = customService.getBNList(busiNum);
 
 		model.addAttribute("custom", customBN);
 		return "customUpdate";
 	}
 
-	@PostMapping("/customdbUpdate")
-	public String updateCustom(Model model, Custom custom, Account account) {
+	@PostMapping("/customUpdateDb")
+//	public String updateCustom(Model model, String busiNum, String custom) {
+	public String updateCustom(Model model, Custom custom) {
+//		System.out.println("custom : " + account);
+		System.out.println("account : " + custom);
+		
+//		Custom customUpdate = customService.updateCustom(busiNum, custom);
+		Custom customUpdate = customService.updateCustom(custom);
+//		Account accountUpdate = customService.updateAccount(account);
 
-		Custom customInsert = customService.insertCustom(custom);
-		Account accountInsert = customService.insertAccount(account);
-
-		System.out.println("controllerInsert1 : " + customInsert);
-		System.out.println("controllerInsert2 : " + accountInsert);
-
-		model.addAttribute("custom", customInsert);
-		model.addAttribute("account", accountInsert);
+//		System.out.println("controllerUpdate1 : " + customUpdate);
+//		System.out.println("controllerUpdate2 : " + accountUpdate);
+//
+		model.addAttribute("custom", customUpdate);
+//		model.addAttribute("account", accountUpdate);
 
 		return "customList";
 	}
@@ -69,7 +73,9 @@ public class CustomController {
 
 	@PostMapping("/customInput")
 	public String insertCustom(Model model, Custom custom, Account account) {
-
+		System.out.println("custom : " + custom);
+		System.out.println("account : " + custom);
+		
 		Custom customInsert = customService.insertCustom(custom);
 		Account accountInsert = customService.insertAccount(account);
 
@@ -81,12 +87,20 @@ public class CustomController {
 
 		return "customList";
 	}
-	
-	@GetMapping("/customDelete")
+
+//	@PostMapping("/customDelete")
+//	public String deleteCustom(Model model, String busiNum) {
+//		int deleteCustom = customService.deleteCustom(busiNum);
+//		
+//		model.addAttribute("deleteCustom", deleteCustom);
+//		
+//		return "customDelete";
+//	}
+	@PostMapping("/customDelete")
 	public String deleteCustom(Model model, String busiNum) {
 		int deleteCustom = customService.deleteCustom(busiNum);
 		
-		model.addAttribute("deleteCustom",deleteCustom);
+		model.addAttribute("deleteCustom", deleteCustom);
 		
 		return "customDelete";
 	}

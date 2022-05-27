@@ -83,7 +83,7 @@
 				</tr>
 				<c:forEach var="custom" items="${custom }">
 				<tr>
-					<td id="bn" ondblclick = "CustomInfo()">${custom.busiNum }</td>
+					<td id="bn" ondblclick = "CustomInfo()"><a href='/Custom/customUpdate?busiNum=${custom.busiNum }'>${custom.busiNum }</a></td>
 					<td id="custom" ondblclick = "CustomInfo()">${custom.custom }</td>
 				</tr>
 				</c:forEach>

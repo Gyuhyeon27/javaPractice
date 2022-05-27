@@ -23,12 +23,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 	<div class="custom_info">
 		<form method="post" name="form">
 			<button type="reset">초기화</button>
-			<input type="submit" value="등록" formaction="/Custom/customInput">
+			<input type="submit" id="add" value="등록" formaction="/Custom/customInput">
 			<button type="button" onclick="location.href='/Custom/customUpdate'">수정</button>
 			<input type="submit" value="삭제" formaction="/Custom/customDelete"><br>
 			<label>사업자번호</label> <input type="text" name="busiNum">&emsp;&emsp;&emsp;&emsp;<label>약&emsp;&emsp;&emsp;칭</label>  <input type="text" name="sHort"><br>
@@ -47,26 +48,30 @@
 			<label>계 약 기 간</label><input type="date" name="contractPeriodS">&emsp;&emsp;&emsp;<input type="date" name="contractPeriodE"><br>
 			<label>등 록 정 보</label><input type="text" name="regiInfoMan">&emsp;<input type="text" name="regiInfoDate" readonly="readonly">&emsp;
 			<label>변 경 정 보</label><input type="text" name="modiInfoMan">&emsp;<input type="text" name="modiInfoDate" readonly="readonly"><br>
-			<div class="account_info">
-				<table>
-					<tr>
-						<th>사 무 소</th>
-						<th>은 행</th>
-						<th>계좌번호</th>
-					</tr>
-					<tr>
-						<td>
-							<input type="text" name="factory" >
-						</td>
-						<td><input type="text" name="tradeBank"></td>
-						<td><input type="text" name="accountNum"></td>
-					</tr>
-				</table>
-			</div>
 		</form>
+		<div class="account_info" id="account_info">
+			<table>
+				<tr>
+					<th>사 무 소</th>
+					<th>은 행</th>
+					<th>계좌번호</th>
+				</tr>
+				<tr>
+					<td>
+						<input type="hidden" name="busiNum" >
+						<input type="text" name="factory" >
+					</td>
+					<td><input type="text" name="tradeBank"></td>
+					<td><input type="text" name="accountNum"></td>
+				</tr>
+			</table>
+		</div>
 	</div>
 <script>
-    function execPostCode(){
+	/**
+		우편번호 검색 함수	
+	**/
+    function execPostCode(){ 
     	daum.postcode.load(function(){
             new daum.Postcode({
                 oncomplete: function(data) {
@@ -93,6 +98,23 @@
             }).open();
         });
     }
+	
+	/**
+		계좌 정보 입력 함수
+	**/
+	$(document).ready(function(){
+		$('#add').on('click', function(){
+	        $.ajax({
+	            url: "/Custom/customInput",
+	            type: "POST",
+	            data: $('#account_info').serialize(),
+	            success: function(data){
+	                location.href="/Custom/customInput";
+	            },
+	            error: function(){  alert("등록에 실패 했습니다.");  }
+	        });
+	    });
+	});	
 </script>
 </body>
 </html>

@@ -26,18 +26,17 @@ public class Custom {
 	private String countryKor;
 	private String specialRelation;
 	private String tradeStop;
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate contractPeriodS;
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate contractPeriodE;
+
 	private String regiInfoMan;
 	private LocalDateTime regiInfoDate;
 	private String modiInfoMan;
 	private LocalDateTime modiInfoDate;
-
-	private String factory;
-	private String tradeBank;
-	private String accountNum;
 
 	public Custom() {
 	}
@@ -46,8 +45,7 @@ public class Custom {
 			String item, String postNum, String addr1, String addr2, String tel, String fax, String homepage,
 			String coYn, String foreignYn, String taxYn, String countryEng, String countryKor, String specialRelation,
 			String tradeStop, LocalDate contractPeriodS, LocalDate contractPeriodE, String regiInfoMan,
-			LocalDateTime regiInfoDate, String modiInfoMan, LocalDateTime modiInfoDate, String factory,
-			String tradeBank, String accountNum) {
+			LocalDateTime regiInfoDate, String modiInfoMan, LocalDateTime modiInfoDate) {
 		super();
 		this.busiNum = busiNum;
 		this.custom = custom;
@@ -75,254 +73,13 @@ public class Custom {
 		this.regiInfoDate = regiInfoDate;
 		this.modiInfoMan = modiInfoMan;
 		this.modiInfoDate = modiInfoDate;
-		this.factory = factory;
-		this.tradeBank = tradeBank;
-		this.accountNum = accountNum;
-	}
-
-	public String getBusiNum() {
-		return busiNum;
-	}
-
-	public void setBusiNum(String busiNum) {
-		this.busiNum = busiNum;
-	}
-
-	public String getCustom() {
-		return custom;
-	}
-
-	public void setCustom(String custom) {
-		this.custom = custom;
-	}
-
-	public String getsHort() {
-		return sHort;
-	}
-
-	public void setsHort(String sHort) {
-		this.sHort = sHort;
-	}
-
-	public String getCeo() {
-		return ceo;
-	}
-
-	public void setCeo(String ceo) {
-		this.ceo = ceo;
-	}
-
-	public String getChargePerson() {
-		return chargePerson;
-	}
-
-	public void setChargePerson(String chargePerson) {
-		this.chargePerson = chargePerson;
-	}
-
-	public String getBusiCondition() {
-		return busiCondition;
-	}
-
-	public void setBusiCondition(String busiCondition) {
-		this.busiCondition = busiCondition;
-	}
-
-	public String getItem() {
-		return item;
-	}
-
-	public void setItem(String item) {
-		this.item = item;
-	}
-
-	public String getPostNum() {
-		return postNum;
-	}
-
-	public void setPostNum(String postNum) {
-		this.postNum = postNum;
-	}
-
-	public String getAddr1() {
-		return addr1;
-	}
-
-	public void setAddr1(String addr1) {
-		this.addr1 = addr1;
-	}
-
-	public String getAddr2() {
-		return addr2;
-	}
-
-	public void setAddr2(String addr2) {
-		this.addr2 = addr2;
-	}
-
-	public String getTel() {
-		return tel;
-	}
-
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-
-	public String getFax() {
-		return fax;
-	}
-
-	public void setFax(String fax) {
-		this.fax = fax;
-	}
-
-	public String getHomepage() {
-		return homepage;
-	}
-
-	public void setHomepage(String homepage) {
-		this.homepage = homepage;
-	}
-
-	public String getCoYn() {
-		return coYn;
-	}
-
-	public void setCoYn(String coYn) {
-		this.coYn = coYn;
-	}
-
-	public String getForeignYn() {
-		return foreignYn;
-	}
-
-	public void setForeignYn(String foreignYn) {
-		this.foreignYn = foreignYn;
-	}
-
-	public String getTaxYn() {
-		return taxYn;
-	}
-
-	public void setTaxYn(String taxYn) {
-		this.taxYn = taxYn;
-	}
-
-	public String getCountryEng() {
-		return countryEng;
-	}
-
-	public void setCountryEng(String countryEng) {
-		this.countryEng = countryEng;
-	}
-
-	public String getCountryKor() {
-		return countryKor;
-	}
-
-	public void setCountryKor(String countryKor) {
-		this.countryKor = countryKor;
-	}
-
-	public String getSpecialRelation() {
-		return specialRelation;
-	}
-
-	public void setSpecialRelation(String specialRelation) {
-		this.specialRelation = specialRelation;
-	}
-
-	public String getTradeStop() {
-		return tradeStop;
-	}
-
-	public void setTradeStop(String tradeStop) {
-		this.tradeStop = tradeStop;
-	}
-
-	public LocalDate getContractPeriodS() {
-		return contractPeriodS;
-	}
-
-	public void setContractPeriodS(LocalDate contractPeriodS) {
-		this.contractPeriodS = contractPeriodS;
-	}
-
-	public LocalDate getContractPeriodE() {
-		return contractPeriodE;
-	}
-
-	public void setContractPeriodE(LocalDate contractPeriodE) {
-		this.contractPeriodE = contractPeriodE;
-	}
-
-	public String getRegiInfoMan() {
-		return regiInfoMan;
-	}
-
-	public void setRegiInfoMan(String regiInfoMan) {
-		this.regiInfoMan = regiInfoMan;
-	}
-
-	public LocalDateTime getRegiInfoDate() {
-		return regiInfoDate;
 	}
 
 	public void setRegiInfoDate(LocalDateTime regiInfoDate) {
 		this.regiInfoDate = regiInfoDate;
 	}
 
-	public String getModiInfoMan() {
-		return modiInfoMan;
-	}
-
-	public void setModiInfoMan(String modiInfoMan) {
-		this.modiInfoMan = modiInfoMan;
-	}
-
-	public LocalDateTime getModiInfoDate() {
-		return modiInfoDate;
-	}
-
 	public void setModiInfoDate(LocalDateTime modiInfoDate) {
 		this.modiInfoDate = modiInfoDate;
 	}
-
-	public String getFactory() {
-		return factory;
-	}
-
-	public void setFactory(String factory) {
-		this.factory = factory;
-	}
-
-	public String getTradeBank() {
-		return tradeBank;
-	}
-
-	public void setTradeBank(String tradeBank) {
-		this.tradeBank = tradeBank;
-	}
-
-	public String getAccountNum() {
-		return accountNum;
-	}
-
-	public void setAccountNum(String accountNum) {
-		this.accountNum = accountNum;
-	}
-
-	@Override
-	public String toString() {
-		return "Custom [busiNum=" + busiNum + ", custom=" + custom + ", sHort=" + sHort + ", ceo=" + ceo
-				+ ", chargePerson=" + chargePerson + ", busiCondition=" + busiCondition + ", item=" + item
-				+ ", postNum=" + postNum + ", addr1=" + addr1 + ", addr2=" + addr2 + ", tel=" + tel + ", fax=" + fax
-				+ ", homepage=" + homepage + ", coYn=" + coYn + ", foreignYn=" + foreignYn + ", taxYn=" + taxYn
-				+ ", countryEng=" + countryEng + ", countryKor=" + countryKor + ", specialRelation=" + specialRelation
-				+ ", tradeStop=" + tradeStop + ", contractPeriodS=" + contractPeriodS + ", contractPeriodE="
-				+ contractPeriodE + ", regiInfoMan=" + regiInfoMan + ", regiInfoDate=" + regiInfoDate + ", modiInfoMan="
-				+ modiInfoMan + ", modiInfoDate=" + modiInfoDate + ", factory=" + factory + ", tradeBank=" + tradeBank
-				+ ", accountNum=" + accountNum + "]";
-	}
-
 }
